@@ -19,7 +19,7 @@
 	untracked = ls-files . --exclude-standard --others
 
 	# delete already merged branches
-	delete-merged-branches = "!git branch --merged | grep -v '*' | grep -v master | grep -v dev | xargs -n 1 git branch -d"
+	delete-merged-branches = "!git branch --merged | grep -Ev '(^\\*|master|main|dev)' | xargs -n 1 git branch -d"
 
 	# delete local branches that no longer exist on remote
 	delete-gone-branches = "!git branch -vv | grep ': gone]' | awk '{print $1}' | xargs git branch -d"
