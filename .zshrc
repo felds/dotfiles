@@ -1,6 +1,8 @@
 # Load antidote and plugins
 . $HOME/config/.antidoterc
 
+autoload -Uz compinit
+compinit -C  # Usa cache
 
 # Custom prompt
 PROMPT='
@@ -22,6 +24,9 @@ export VISUAL=vim
 
 # export LANG=pt_BR.UTF-8
 # export LC_ALL=pt_BR.UTF-8
+
+
+
 
 # # HOME BIN
 # export PATH="$HOME/bin:$HOME/config/bin:$PATH"
@@ -48,11 +53,22 @@ WORDCHARS='*?_[]~='  # sem /-_. para que quebrem a palavra
 # =============================================================================
 # =============================================================================
 
+
+# cache completitions for 24hs
+if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
+	compinit
+else
+	compinit -C
+fi
+
+
+# load additional zsh configs
 if [[ -d ~/.zshrc.d ]]; then
 	for file in ~/.zshrc.d/*.zsh; do
 		source "$file"
   	done
 fi
+
 
 # local overrides
 if [[ -f ~/.zshrc.local ]]; then
