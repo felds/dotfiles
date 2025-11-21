@@ -1,8 +1,5 @@
-# Load antidote and plugins
-. $HOME/config/.antidoterc
-
-autoload -Uz compinit
-compinit -C  # Usa cache
+autoload compinit
+compinit
 
 # Custom prompt
 PROMPT='
@@ -52,14 +49,6 @@ WORDCHARS='*?_[]~='  # sem /-_. para que quebrem a palavra
 # =============================================================================
 # =============================================================================
 # =============================================================================
-
-
-# cache completitions for 24hs
-if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
-	compinit
-else
-	compinit -C
-fi
 
 
 # load additional zsh configs
