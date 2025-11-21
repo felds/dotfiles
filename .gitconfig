@@ -7,19 +7,23 @@
 	ci = commit --verbose
 	br = branch
 	co = checkout
+	sw = switch
 	df = diff
 	dfw = diff --ignore-all-space
-	lg = log --color=auto --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)[%an]%Creset' --abbrev-commit
-	delete-merged-branches = "!git branch --merged | grep -v '*' | grep -v master | grep -v dev | xargs -n 1 git branch -d"
-	stage   = add
+	stage = add
 	unstage = reset HEAD --
+	lg = log --color=auto --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)[%an]%Creset' --abbrev-commit
+	hash-short = show --pretty=format:"%h" --no-patch
 	root = !pwd
-	sw = switch
 	ignored = ls-files . --ignored --exclude-standard --others
 	untracked = ls-files . --exclude-standard --others
-	hash-short = show --pretty=format:"%h" --no-patch
-	gohome = !cd ~
-    
+
+	# delete already merged branches
+	delete-merged-branches = "!git branch --merged | grep -v '*' | grep -v master | grep -v dev | xargs -n 1 git branch -d"
+
+	# delete local branches that no longer exist on remote
+	delete-gone-branches = "!git branch -vv | grep ': gone]' | awk '{print $1}' | xargs git branch -d"
+
 
 [filter "lfs"]
 	clean = git-lfs clean -- %f

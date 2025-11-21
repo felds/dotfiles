@@ -40,4 +40,3 @@ mt() { cd $(mktemp -d)  }
 # redirect calls for gcloud to gctx
 gcloud() { gctx "$@"; }
 
-git_cleanup_branches() { git branch -vv | grep ': gone]' | awk '{print $1}' | xargs git branch -d; }
