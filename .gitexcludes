@@ -1,0 +1,20 @@
+# VIM files
+*.swp
+*.swo
+*.un~
+
+# Ctags
+tags
+tags.lock
+tags.temp
+tags.log
+
+# Visual Studio Code
+.vscode
+
+# PhpStorm
+.idea/
+
+# Mac
+.DS_Store
+.com.apple.timemachine.supported

@@ -1,0 +1,75 @@
+[include]
+	path = ~/.gitconfig.local
+
+
+[alias]
+	st = status
+	ci = commit --verbose
+	br = branch
+	co = checkout
+	df = diff
+	dfw = diff --ignore-all-space
+	lg = log --color=auto --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)[%an]%Creset' --abbrev-commit
+	delete-merged-branches = "!git branch --merged | grep -v '*' | grep -v master | grep -v dev | xargs -n 1 git branch -d"
+	stage   = add
+	unstage = reset HEAD --
+	root = !pwd
+	sw = switch
+	ignored = ls-files . --ignored --exclude-standard --others
+	untracked = ls-files . --exclude-standard --others
+	hash-short = show --pretty=format:"%h" --no-patch
+	gohome = !cd ~
+    
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+
+[diff]
+	tool = vimdiff
+
+[init]
+	defaultBranch = master
+
+[apply]
+    	whitespace = strip
+
+[core]
+	excludesfile = ~/.gitexcludes
+	# editor = vim
+	autocrlf = input
+
+[diff]
+	color   = true
+	rename  = stranger
+	tool    = vimdiff
+	guitool = gvimdiff
+
+[difftool]
+	prompt = false
+
+
+[merge]
+	tool    = vimdiff
+	guitool = gvimdiff
+
+[mergetool]
+	prompt      = false
+	keepBackup  = false
+
+[pager]
+	branch = false
+	color = true
+
+[pull]
+	ff = only
+	# rebase = true
+
+[push]
+	followTags = true
+	default = current
+
+[status]
+	color = true
