@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+config_folder_name=".gcloudconfig"
+
+find_config_folder() {
+    current_dir=$(pwd)
+
+    while [[ "$current_dir" != "/" ]]; do
+        config_dir="$current_dir/$config_folder_name"
+        
+        if [[ -d "$config_dir" ]]; then
+            echo "$config_dir"
+            return
+        fi
+
+        current_dir=$(dirname "$current_dir")
+    done
+}
+
+config_dir=$(find_config_folder)
+
+if [[ -z "$config_dir" ]]; then
+    echo "Config directory not found (looking for $config_folder_name)" >&2
+    exit 1
+else
+    export CLOUDSDK_CONFIG="$config_dir"
+
+    user=$(\gcloud config get account)
+    project=$(\gcloud config get project)
+
+    echo -e "gcloud config: ($CLOUDSDK_CONFIG)" >&2
+    echo -e "\tuser:    $user" >&2
+    echo -e "\tproject: $project \n" >&2
+    \gcloud "$@"
+    exit $?
+fi

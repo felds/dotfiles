@@ -1,0 +1,33 @@
+#! /usr/bin/env sh
+
+# check if it's an sf2 installation
+if [ ! -f app/console ]; then
+    echo "✘  this is not a Symfony2 project"
+    exit 2
+fi
+
+
+# check if the mandatory folders exist
+DIRS='app/cache app/logs web/uploads'
+for DIR in $DIRS; do
+    if [ ! -d $DIR ]; then
+        mkdir -p $DIR
+        echo "→ Created $DIR dir" >&2
+    fi
+done
+
+
+# clen up cache dir
+rm -fr app/cache/*
+echo "→ Emptied app/cache dir" >&2
+
+
+# set the permissions
+APACHEUSER=$(ps aux | grep -E '[a]pache|[h]ttpd' | grep -v root | head -1 | cut -d\  -f1)
+chmod -R +a "$APACHEUSER allow delete,write,append,file_inherit,directory_inherit" $DIRS
+chmod -R +a "`whoami` allow delete,write,append,file_inherit,directory_inherit" $DIRS
+
+
+# horray!
+echo "✔  all set!" >&2
+exit 0
