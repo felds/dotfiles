@@ -52,6 +52,7 @@ PROMPT+='%F{magenta}$(prompt_path)%f'
 PROMPT+='$(git_prompt_info)'
 PROMPT+='%(?..%F{red} [%?]%f)'  # error code, if any
 PROMPT+=$'\n'
-PROMPT+='❯ '
+# PROMPT+='❯ '
+PROMPT+='$ '
 
 
