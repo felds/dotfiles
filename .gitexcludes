@@ -18,3 +18,5 @@ tags.log
 # Mac
 .DS_Store
 .com.apple.timemachine.supported
+
+**/.claude/settings.local.json
