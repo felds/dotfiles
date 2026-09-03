@@ -10,5 +10,5 @@ Clone this repository, preferably under `$HOME` and use the [stow](https://www.g
 ```sh
 git clone --depth=1 git@github.com:felds/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
-stow
+stow .
 ```
