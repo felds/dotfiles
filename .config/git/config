@@ -38,7 +38,7 @@
 [apply]
     	whitespace = strip
 [core]
-	excludesfile = ~/.gitexcludes
+	# excludesfile = ~/.gitexcludes
 	# editor = vim
 	autocrlf = input
 [diff]
