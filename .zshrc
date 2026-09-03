@@ -43,3 +43,7 @@ fi
 if [[ -f ~/.zshrc.local ]]; then
 	source ~/.zshrc.local
 fi
+export PATH="$HOME/.local/bin:$PATH"
+
+# bun completions
+[ -s "/Users/felds/.bun/_bun" ] && source "/Users/felds/.bun/_bun"
